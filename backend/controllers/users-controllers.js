@@ -36,7 +36,7 @@ const signup = async (req, res, next) => {
     );
   }
 
-  const { name, email, password, places } = req.body;
+  const { name, email, password} = req.body;
 
   let existingUser;
   try {
@@ -63,7 +63,7 @@ const signup = async (req, res, next) => {
     image:
       'https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg',
     password,
-    places,
+    places: [],
   });
 
   try {
