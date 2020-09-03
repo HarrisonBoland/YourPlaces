@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Card from '../../shared/components/UIElements/Card';
 import PlaceItem from './PlaceItem';
 import Button from '../../shared/components/FormElements/Button';
+import { AuthContext } from '../../shared/context/auth-context';
 import './PlaceList.css';
 
 const PlaceList = (props) => {
+  const auth = useContext(AuthContext);
+  const userId = useParams().userId;
+  
+  if (auth.userId !== userId && props.items.length === 0) {
+    return (
+      <div className="place-list center">
+        <Card>
+          <h2>This user does not have any places.</h2>
+        </Card>
+      </div>
+    );
+  }
+
   if (props.items.length === 0) {
     return (
       <div className="place-list center">
