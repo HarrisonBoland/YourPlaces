@@ -69,9 +69,6 @@ const Auth = () => {
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
-    console.log(formState.inputs);
-    console.log(auth.userId)
-
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
@@ -97,7 +94,7 @@ const Auth = () => {
           'POST',
           formData
         );
-        auth.login();
+        auth.login(responseData.user.id);
       } catch (err) {}
     }
   };
