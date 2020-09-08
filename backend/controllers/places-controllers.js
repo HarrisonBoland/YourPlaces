@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
@@ -178,6 +179,8 @@ const deletePlace = async (req, res, next) => {
     return next(error);
   }
 
+  const imagePath = place.image
+
   try {
     const sess = await mongoose.startSession();
     sess.startTransaction();
@@ -193,6 +196,10 @@ const deletePlace = async (req, res, next) => {
     );
     return next(error);
   }
+
+  fs.unlink(imagePath, err => {
+    console.log(err)
+  })
 
   res.status(200).json({ message: 'Deleted place.' });
 };
