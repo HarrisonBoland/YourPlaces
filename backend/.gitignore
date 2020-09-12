@@ -5,6 +5,7 @@
 /uploads
 /.pnp
 .pnp.js
+.nodemon.json
 
 # testing
 /coverage
